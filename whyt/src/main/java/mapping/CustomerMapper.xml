@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="dao.CustomerMapper" >
+  <resultMap id="BaseResultMap" type="beans.Customer" >
+    <id column="CUSTOMER_NUMBER" property="customerNumber" jdbcType="VARCHAR" />
+    <result column="CERTIFICATE_NUMBER" property="certificateNumber" jdbcType="VARCHAR" />
+    <result column="CERTIFICATE_TYPE" property="certificateType" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    CUSTOMER_NUMBER, CERTIFICATE_NUMBER, CERTIFICATE_TYPE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from customer
+    where CUSTOMER_NUMBER = #{customerNumber,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from customer
+    where CUSTOMER_NUMBER = #{customerNumber,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="beans.Customer" >
+    insert into customer (CUSTOMER_NUMBER, CERTIFICATE_NUMBER, 
+      CERTIFICATE_TYPE)
+    values (#{customerNumber,jdbcType=VARCHAR}, #{certificateNumber,jdbcType=VARCHAR}, 
+      #{certificateType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="beans.Customer" >
+    insert into customer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="customerNumber != null" >
+        CUSTOMER_NUMBER,
+      </if>
+      <if test="certificateNumber != null" >
+        CERTIFICATE_NUMBER,
+      </if>
+      <if test="certificateType != null" >
+        CERTIFICATE_TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="customerNumber != null" >
+        #{customerNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="certificateNumber != null" >
+        #{certificateNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="certificateType != null" >
+        #{certificateType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="beans.Customer" >
+    update customer
+    <set >
+      <if test="certificateNumber != null" >
+        CERTIFICATE_NUMBER = #{certificateNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="certificateType != null" >
+        CERTIFICATE_TYPE = #{certificateType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CUSTOMER_NUMBER = #{customerNumber,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="beans.Customer" >
+    update customer
+    set CERTIFICATE_NUMBER = #{certificateNumber,jdbcType=VARCHAR},
+      CERTIFICATE_TYPE = #{certificateType,jdbcType=VARCHAR}
+    where CUSTOMER_NUMBER = #{customerNumber,jdbcType=VARCHAR}
+  </update>
+</mapper>
