@@ -28,7 +28,6 @@ public class CustomerController {
         String customernumber = req.getParameter("customernumber");
         Customer customer = customerService.getCustomerByNumber(customernumber);
         System.out.println(customer.toString());
-        System.out.print("aaa");
         return new ModelAndView("login");
     }
 
