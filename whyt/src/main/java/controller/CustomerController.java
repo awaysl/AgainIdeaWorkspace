@@ -11,6 +11,7 @@ import serviceImp.CustomerServiceImpl;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
 
 /**
  * Created by 0100060991 on 2016/9/18.
@@ -27,6 +28,7 @@ public class CustomerController {
         String customernumber = req.getParameter("customernumber");
         Customer customer = customerService.getCustomerByNumber(customernumber);
         System.out.println(customer.toString());
+        System.out.print("aaa");
         return new ModelAndView("login");
     }
 
