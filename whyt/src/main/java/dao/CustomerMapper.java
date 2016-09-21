@@ -3,7 +3,7 @@ package dao;
 import beans.Customer;
 import org.springframework.stereotype.Repository;
 
-@Repository(value = "CustomerMapper")
+@Repository
 public interface CustomerMapper {
     int deleteByPrimaryKey(String customerNumber);
 

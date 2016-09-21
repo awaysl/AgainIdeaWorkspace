@@ -72,7 +72,4 @@ http://www.springframework.org/schema/aop/spring-aop.xsd
         <aop:pointcut id="transactionPointcut" expression="execution(* serviceImp.*Impl.*(..))" />
         <aop:advisor pointcut-ref="transactionPointcut" advice-ref="transactionAdvice" />
     </aop:config>
-
-
-
 </beans>
