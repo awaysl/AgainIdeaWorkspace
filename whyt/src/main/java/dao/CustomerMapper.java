@@ -3,6 +3,8 @@ package dao;
 import beans.Customer;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface CustomerMapper {
     int deleteByPrimaryKey(String customerNumber);
@@ -16,4 +18,6 @@ public interface CustomerMapper {
     int updateByPrimaryKeySelective(Customer record);
 
     int updateByPrimaryKey(Customer record);
+
+    List<Customer> selectAllCustomer();
 }

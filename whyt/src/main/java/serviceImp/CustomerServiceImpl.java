@@ -6,6 +6,7 @@ import service.CustomerService;
 import dao.CustomerMapper;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by 0100060991 on 2016/9/19.
@@ -18,9 +19,9 @@ public class CustomerServiceImpl implements CustomerService {
     private CustomerMapper customerMapper;
 
     @Override
-    public Customer getCustomerByNumber(String Customer) {
-        Customer customer = customerMapper.selectByPrimaryKey(Customer);
-        return customer;
+    public List<Customer> getCustomerByNumber(String Customer) {
+        List<Customer> customerList = customerMapper.selectAllCustomer();
+        return customerList;
     }
 
     @Override

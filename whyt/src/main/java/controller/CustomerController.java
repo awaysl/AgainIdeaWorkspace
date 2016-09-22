@@ -11,7 +11,9 @@ import serviceImp.CustomerServiceImpl;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by 0100060991 on 2016/9/18.
@@ -26,9 +28,10 @@ public class CustomerController {
     @RequestMapping(value = "/trans")
     public ModelAndView modelAndView(HttpServletRequest req, HttpServletResponse resp){
         String customernumber = req.getParameter("customernumber");
-        Customer customer = customerService.getCustomerByNumber(customernumber);
-        System.out.println(customer.toString());
-        return new ModelAndView("login");
+        List<Customer> list = customerService.getCustomerByNumber(customernumber);
+        ModelAndView mv = new ModelAndView("login");
+        mv.addObject("customerlist",list);
+        return mv;
     }
 
 }
